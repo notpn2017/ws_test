@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image as Image;
 use App\User;
 
-class UserRegisterController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -80,6 +80,7 @@ class UserRegisterController extends Controller
             return back()->with('error', 'You have entered wrong password. Please try agian.');
         }
     }
+
     /**
      * Show the form for editing the specified resource.
      *

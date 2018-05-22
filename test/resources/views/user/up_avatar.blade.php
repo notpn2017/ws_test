@@ -47,8 +47,8 @@
                     {{ Form::file('avatar', null, array('class' => 'form-control')) }}
                 </div>
             <a href="{{ URL::to('/user/'.$user->username.'/show') }}"><input type="submit" class="btn btn-success" value="Upload"></a>
-            <a href="{{ URL::to('/user/'.$user->username) }}"><input type="button" class="btn btn-primary" value="Back"></a>
         {{ Form::close() }}
+            <a href="{{ URL::to('/user/') }}"><input style="position: relative; top: -34px; left: 74px;" type="button" class="btn btn-primary" value="Back"></a>
     @endif
     </div>
 </body>
