@@ -10,5 +10,6 @@
 * Run: "php artisan key:generate"
 * Run: "php artisan migrate" to migrate the database
 * Run: "php artisan serve" to run the project
+
 ++ Execution
 * Run: 127.0.0.1:8000 

@@ -23,6 +23,7 @@
             </div>
             {{ Form::hidden('_method', 'DELETE') }}
             {{ Form::submit('Delete this user', array('class' => 'btn btn-warning')) }}
+            <a href="/user/{{ $user->username }}"><button type="button" class="btn btn-primary pull-right">Back</button></a>
         {{ Form::close() }}
         @endforeach
     </div>

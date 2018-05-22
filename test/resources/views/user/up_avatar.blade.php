@@ -13,7 +13,6 @@
 <body>
     <div class="container">
     @if (isset($user))
-        <a href="{{ URL::to('/user/'.$user->username) }}"><input style="margin-top: 10px;" type="button" class="btn btn-primary" value="Back"></a>
         <h3>{{ $user->username }}</h3>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -42,12 +41,13 @@
             @endif
                 <div class="form-group">
                     {{ Form::label('password', 'Enter password') }}
-                    <input type="password" name="password" value="" class="form-control input-pass">
+                    <input style="width: 250px;" type="password" name="password" value="" class="form-control input-pass">
                 </div>
                 <div class="form-group">
                     {{ Form::file('avatar', null, array('class' => 'form-control')) }}
                 </div>
             <a href="{{ URL::to('/user/'.$user->username.'/show') }}"><input type="submit" class="btn btn-success" value="Upload"></a>
+            <a href="{{ URL::to('/user/'.$user->username) }}"><input type="button" class="btn btn-primary" value="Back"></a>
         {{ Form::close() }}
     @endif
     </div>

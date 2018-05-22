@@ -11,23 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/create', 'UserController@create');
+Route::get('/create', 'API\UserRegisterController@create');
 Route::prefix('user')->group(function (){
-    Route::get('/user/{username}', 'UserController@index');
-    Route::get('/create', 'UserController@create');
-    Route::get('/{username}/update', 'UserController@edit');
-    Route::get('/{username}/delete', 'UserController@delete');
-    Route::get('/{username}/avatar', 'UserController@upAvatar');
-    Route::get('/{username}/show', 'UserController@show');
-    Route::get('/avatar-upload',['as'=>'avatar.upload','uses'=>'UserController@upAvatar']);
-    Route::post('/avatar-upload/{username}',['as'=>'avatar.upload.post','uses'=>'UserController@saveAvatar']);
+    Route::get('/user/{username}', 'API\UserRegisterController@index');
+    Route::get('/create', 'API\UserRegisterController@create');
+    Route::get('/{username}/update', 'API\UserRegisterController@edit');
+    Route::get('/{username}/delete', 'API\UserRegisterController@delete');
+    Route::get('/{username}/avatar', 'API\UserRegisterController@upAvatar');
+    Route::get('/{username}/show', 'API\UserRegisterController@show');
+    Route::get('/avatar-upload',['as'=>'avatar.upload','uses'=>'API\UserRegisterController@upAvatar']);
+    Route::post('/avatar-upload/{username}',['as'=>'avatar.upload.post','uses'=>'API\UserRegisterController@saveAvatar']);
 });
 
-Route::resource('/', 'UserController');
-Route::resource('/user', 'UserController');
+Route::resource('/', 'API\UserRegisterController');
+Route::resource('/user', 'API\UserRegisterController');
 
 
