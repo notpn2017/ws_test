@@ -43,7 +43,10 @@
                 {{ Form::text('bio', null, array('class' => 'form-control')) }}
             </div>
             <div>
-                <button type="button" class="btn btn-danger cancel">Canceel</button>
+                
+                <a href="/user">
+                    <button type="button" class="btn btn-danger cancel">Back</button>
+                </a>
                 <button type="submit" class="btn btn-successregister">Submit</button>
             </div>
         {!! Form::close() !!}
