@@ -13,6 +13,7 @@
 <body>
     <div class="container">
     @if (isset($user))
+        <a href="{{ URL::to('/user/'.$user->username) }}"><input style="margin-top: 10px;" type="button" class="btn btn-primary" value="Back"></a>
         <h3>{{ $user->username }}</h3>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -28,6 +29,11 @@
                 {{ session()->get('message') }}
             </div>
         @endif
+        @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
         {{ Form::model($user, array('route' => array('avatar.upload.post', $user->username),'files' => true, 'method' => 'POST')) }}
             @if(isset($user->avatar))
                 <img style="width: 200px;" src="/avatar/{{ $user->avatar }}" alt="User Avatar">
@@ -39,13 +45,9 @@
                     <input type="password" name="password" value="" class="form-control input-pass">
                 </div>
                 <div class="form-group">
-                    {{ Form::label('password', 'Confirm password') }}
-                    <input type="confirm_password" name="password" value="" class="form-control input-pass">
-                </div>
-                <div class="form-group">
                     {{ Form::file('avatar', null, array('class' => 'form-control')) }}
                 </div>
-            <a href="{{ URL::to('/user/'.$user->username.'/show') }}"><input type="submit" value="Upload"></a>
+            <a href="{{ URL::to('/user/'.$user->username.'/show') }}"><input type="submit" class="btn btn-success" value="Upload"></a>
         {{ Form::close() }}
     @endif
     </div>

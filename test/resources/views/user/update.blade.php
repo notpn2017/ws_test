@@ -18,16 +18,13 @@
             </div>
         @endif
         
-        {{ Form::model($user, array('route' => array('user.update', $user->username),'files' => true, 'method' => 'PUT')) }}
+        {{ Form::model($user, array('route' => array('user.update', $user->username), 'method' => 'PUT')) }}
         <div class="row">
             <div class="col-md-4">
                 @if(isset($user->avatar))
-                    <img style="width: 100%;" src="/avatar/{{ $user->avatar }}" alt="User Avatar">
+                    <img class="bigger-user-avatar" src="/avatar/{{ $user->avatar }}" alt="User Avatar">
                 @else
-                    <img src="/avatar/avatar-default.png" alt="">
-                    <div class="form-group">
-                        {{ Form::file('avatar', null, array('class' => 'form-control')) }}
-                    </div>
+                    <img src="/avatar/avatar-default.png" alt="Avatar Default">
                 @endif
             </div>
 
@@ -55,7 +52,7 @@
             </div>
         </div>
             <div>
-                <button type="button" class="btn btn-danger cancel">Cancel</button>
+                <a href="/user/{{ $user->username }}"><input type="button" class="btn btn-danger cancel" value="Cancel"></a>
                 <!-- <a href="{{ redirect()->back() }}"><input type="button" class="btn btn-danger cancel" value="Cancel"></a> -->
                 <button type="submit" class="btn btn-success register">Update</button>
             </div>

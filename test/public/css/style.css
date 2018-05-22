@@ -1,0 +1,23 @@
+.user-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.bigger-user-avatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.user-info {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.table td {
+    width: 300px;
+    height: auto;
+}

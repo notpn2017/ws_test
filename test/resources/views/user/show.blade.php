@@ -10,13 +10,14 @@
                     @if(isset($user->avatar))
                     <td>
                         <a href="{{ URL::to('/user/'.$user->username.'/avatar') }}">
-                            <img style="width: 200px;" src="../avatar/{{ $user->avatar }}" alt="User Avatar">
+                            <img class="user-avatar" style="width: 200px;" src="/avatar/{{ $user->avatar }}" alt="User Avatar">
                         </a>
                     </td>
                     @else
                     <td>
                         <a href="{{ URL::to('/user/'.$user->username.'/avatar') }}">
-                            <img src="/avatar/avatar-default.png" alt="Avatar Default">
+                            <img src="/avatar/avatar-default.png" alt="Avatar Default"><br>
+                            You should update your avatar. Click here the avatar to update.
                         </a>
                     </td>
                     @endif
@@ -42,11 +43,11 @@
                     <td>{{ $user->bio }}</td>
                 </tr>
             </table>
-            <a href="{{ URL::to('/user/'.$user->username.'/update') }}">
+            <a class="btn-update" href="{{ URL::to('/user/'.$user->username.'/update') }}">
                 <input type="button" class="btn btn-success" value="Update">
             </a>
-            <a href="{{ URL::to('/user/'.$user->username) }}">
-                <input type="button" class="btn btn-danger" value="Delete">
+            <a class="btn-update" href="{{ URL::to('/user/'.$user->username.'/delete') }}">
+                <input type="button" class="btn btn-warning" value="Delete">
             </a>
 
         @endforeach

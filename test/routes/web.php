@@ -15,19 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user/{username}/update', 'UserController@edit');
-Route::post('user/update/{username}', 'UserController@update')->name('user.update');
 Route::get('/create', 'UserController@create');
 Route::prefix('user')->group(function (){
+    Route::get('/user/{username}', 'UserController@index');
     Route::get('/create', 'UserController@create');
+    Route::get('/{username}/update', 'UserController@edit');
+    Route::get('/{username}/delete', 'UserController@delete');
+    Route::get('/{username}/avatar', 'UserController@upAvatar');
+    Route::get('/{username}/show', 'UserController@show');
+    Route::get('/avatar-upload',['as'=>'avatar.upload','uses'=>'UserController@upAvatar']);
+    Route::post('/avatar-upload/{username}',['as'=>'avatar.upload.post','uses'=>'UserController@saveAvatar']);
 });
 
-Route::get('/user/{username}/avatar', 'UserController@upAvatar');
-
-Route::put('/user/{username}', 'UserController@index');
-Route::get('/user/{username}/show', 'UserController@show');
-Route::resource('/user', 'UserController');
 Route::resource('/', 'UserController');
+Route::resource('/user', 'UserController');
 
-Route::get('user/avatar-upload',['as'=>'avatar.upload','uses'=>'UserController@upAvatar']);
-Route::post('user/avatar-upload/{username}',['as'=>'avatar.upload.post','uses'=>'UserController@saveAvatar']);
+

@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function show($username)
     {
-        $users = \DB::table('users')->where('username', $username)->get();
+        $users = User::where('username', $username)->get();
         return view('user.show', ['users' => $users]);
     }
 
@@ -72,7 +72,7 @@ class UserController extends Controller
      */
     public function edit($username)
     {
-        $users = \DB::table('users')->where('username', $username)->get();
+        $users = User::where('username', $username)->get();
         return view('user.update', ['users' => $users]);
     }
 
@@ -93,17 +93,14 @@ class UserController extends Controller
         ]);
 
         $user = User::where('username',$username)->first();
-        print_r($user); die();
         $user->password         = bcrypt($request->password);
         $user->phone_number     = $request->phone_number;
         $user->birthday         = $request->birthday;
         $user->address          = $request->address;
         $user->bio              = $request->bio;
 
-        print_r($user); die();
         $user->save();
-        \Session::flash('message', 'Successfully updated user!');
-        return \Redirect::to('user')->with('success', 'You have updated successfully!');
+        return \Redirect::to('user')->with('message', 'You have updated user successfully!');
     }
 
     /**
@@ -112,34 +109,53 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($username) 
     {
-        //
+        $users = User::where('username', $username)->get();
+        return view('user.delete', ['users' => $users]);
     }
 
-    public function upAvatar($username) {
+    public function destroy(Request $request, $username)
+    {
+        $validator = $request->validate([
+            'password' => 'required|min:6',
+        ]);
+
+        $user = User::where('username', $username)->first();
+        if($user && \Hash::check($request->password, $user->password)) {
+            $user->delete();
+
+            return \Redirect::to('user')->with('message', 'You have deleted an user successfully!');
+        } else {
+            return back()->with('error', 'You have entered wrong password. Please try agian.');
+        }
+    }
+
+    public function upAvatar($username) 
+    {
         $user = User::where('username',$username)->first();
-        //print_r($user); die();
         return view('user.up_avatar', ['user' => $user]);
     }
 
-    public function saveAvatar(Request $request, $username) {
+    public function saveAvatar(Request $request, $username) 
+    {
         $validator = $request->validate([
             'password' => 'required|min:6',
-            'confirm_password' => 'same:password'
         ]);
 
         $user = User::where('username', $username)->first();
 
-        $input = $request->all();
-        $avatarName = time().'.'.request()->avatar->getClientOriginalExtension();
-        request()->avatar->move(public_path('avatar'), $avatarName);
-        $user->avatar = $avatarName;
+        if($user && \Hash::check($request->password, $user->password)) {
+            $avatarName = time().'.'.request()->avatar->getClientOriginalExtension();
+            request()->avatar->move(public_path('avatar'), $avatarName);
+            $user->avatar = $avatarName;
         
-        $user->save();
+            $user->save();
 
-        return back()   ->with('message','You have successfully upload avatar.')
-                        ->with('avatar',$avatarName);
-
+            return back()   ->with('message','You have uploaded avatar successfully.')
+                            ->with('avatar',$avatarName);
+        } else {
+            return back()->with('error', 'You have entered wrong password. Please try agian.');
+        }
     }
 }
