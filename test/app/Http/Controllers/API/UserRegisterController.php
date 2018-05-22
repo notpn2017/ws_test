@@ -59,12 +59,27 @@ class UserRegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($username)
+
+    public function view($username)
     {
         $users = User::where('username', $username)->get();
-        return view('user.show', ['users' => $users]);
+        return view('user.view', ['users' => $users]);
     }
 
+    public function show(Request $request, $username)
+    {
+        $validator = $request->validate([
+            'password' => 'required|min:6',
+        ]);
+
+        $user = User::where('username', $username)->first();
+
+        if($user && \Hash::check($request->password, $user->password)) {
+            return view('user.show', ['user' => $user]);
+        } else {
+            return back()->with('error', 'You have entered wrong password. Please try agian.');
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

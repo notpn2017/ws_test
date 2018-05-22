@@ -1,8 +1,6 @@
 @extends('layouts.theme')
 @section('content')
     <div class="container">
-    @if (isset($users))
-        @foreach($users as $user)
             <h3>{{ $user->username }}</h3>
             <table class="table table-border">
                 <tr>
@@ -17,7 +15,7 @@
                     <td>
                         <a href="{{ URL::to('/user/'.$user->username.'/avatar') }}">
                             <img src="/avatar/avatar-default.png" alt="Avatar Default"><br>
-                            You should update your avatar. Click here the avatar to update.
+                            You should update your avatar. Click here to update the avatar.
                         </a>
                     </td>
                     @endif
@@ -50,6 +48,4 @@
                 <input type="button" class="btn btn-warning" value="Delete">
             </a>
 
-        @endforeach
-    @endif
     </div>

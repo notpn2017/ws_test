@@ -30,15 +30,15 @@
 
             <div class="col-md-8">
                 <div class="form-group">
-                    {{ Form::label('password', 'Password') }}
+                    {{ Form::label('password', 'Password *') }}
                     {{ Form::password('password', array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('phone_number', 'Phone Number') }}
+                    {{ Form::label('phone_number', 'Phone Number *') }}
                     {{ Form::number('phone_number', null, array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('birthday', 'Birthday') }}
+                    {{ Form::label('birthday', 'Birthday *') }}
                     {{ Form::date('birthday', null, array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
@@ -52,8 +52,6 @@
             </div>
         </div>
             <div>
-                <a href="/user/{{ $user->username }}"><input type="button" class="btn btn-danger cancel" value="Cancel"></a>
-                <!-- <a href="{{ redirect()->back() }}"><input type="button" class="btn btn-danger cancel" value="Cancel"></a> -->
                 <button type="submit" class="btn btn-success register">Update</button>
             </div>
         {!! Form::close() !!}

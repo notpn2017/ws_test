@@ -28,7 +28,7 @@
                     <img class="user-avatar" src="/avatar/avatar-default.png" alt="Avatar Default">
                 @endif
                 <h3>User name: {{ $user->username }}</h3>
-                <a href="{{ URL::to('/user/'.$user->username) }}"><input type="button" class="btn btn-primary" value="View User"></a>
+                <a href="{{ URL::to('/user/'.$user->username.'/view') }}"><input type="button" class="btn btn-success" value="View User"></a>
             </div>
         @endforeach
         </div>

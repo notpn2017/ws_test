@@ -40,7 +40,7 @@
                 <img src="/avatar/avatar-default.png" alt="">
             @endif
                 <div class="form-group">
-                    {{ Form::label('password', 'Enter password') }}
+                    {{ Form::label('password', 'Enter password *') }}
                     <input style="width: 250px;" type="password" name="password" value="" class="form-control input-pass">
                 </div>
                 <div class="form-group">

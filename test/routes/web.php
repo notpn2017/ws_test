@@ -18,7 +18,8 @@ Route::prefix('user')->group(function (){
     Route::get('/{username}/update', 'API\UserRegisterController@edit');
     Route::get('/{username}/delete', 'API\UserRegisterController@delete');
     Route::get('/{username}/avatar', 'API\UserRegisterController@upAvatar');
-    Route::get('/{username}/show', 'API\UserRegisterController@show');
+    Route::get('/{username}/view', 'API\UserRegisterController@view');
+    Route::post('/{username}/show', 'API\UserRegisterController@show');
     Route::get('/avatar-upload',['as'=>'avatar.upload','uses'=>'API\UserRegisterController@upAvatar']);
     Route::post('/avatar-upload/{username}',['as'=>'avatar.upload.post','uses'=>'API\UserRegisterController@saveAvatar']);
 });
