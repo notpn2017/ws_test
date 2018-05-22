@@ -50,7 +50,7 @@ class UserRegisterController extends Controller
         $user = User::create($input);
         $success['username'] =  $user->username;
 
-        return redirect('user/'.$user->username.'/show')->with('message', 'You have registered successfully!');
+        return redirect('user/')->with('message', 'You have registered successfully!');
     }
 
     /**
